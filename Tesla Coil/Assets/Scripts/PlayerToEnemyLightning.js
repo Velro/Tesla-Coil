@@ -10,12 +10,14 @@ private var playerStats : PlayerStats;
 private var lineRenderer : LineRenderer;
 
 function Start () {
+	gameObject.renderer.material.mainTextureScale = Vector2(1/3, 0);
 	enemies = GameObject.FindGameObjectsWithTag("enemy");
 	playerStats = player.GetComponent(PlayerStats);
 	lineRenderer = gameObject.GetComponent(LineRenderer);
 }
 
 function Update () {
+	gameObject.renderer.material.mainTextureOffset = Vector2(Time.time*2,0);
 	lineRenderer.SetPosition(0, player.transform.position);
 	if (CheckEnemies() != null && playerStats.channeling == true ){
 		currentEnemy = CheckEnemies() as GameObject;

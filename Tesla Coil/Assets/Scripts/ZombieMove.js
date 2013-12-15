@@ -1,6 +1,7 @@
-﻿#pragma strict
+#pragma strict
 var coil : GameObject;
 var speed : float = 1;
+var damage : float = 1;
 
 private var controller : CharacterController;
 
