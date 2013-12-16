@@ -36,7 +36,7 @@ function OnGUI () {
 	GUI.Label(Rect(Screen.width/2, 10, 200, 60), waveManager.currentWave+waveManager.countdown);
 	
 	/**** Upgroids ****/
-	if (waveManager.waitForOne == true && paused == false){
+	if ((waveManager.waitForOne == true || waveManager.waitForTwo == true) && paused == false){
 		if(GUI.Button(Rect(5, Screen.height - 40 - 5, 80, 25), "Research")){
 			upgradeMenu = !upgradeMenu;
 		}
@@ -56,23 +56,50 @@ function OnGUI () {
 			
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Damage halved per jump", upgradesLabel);
-			GUILayout.Button("Chain Lightning 1");
-			GUILayout.Button("Chain Lightning 2");
-			GUILayout.Button("Chain Lightning 3");
+			if (GUILayout.Button("Chain Lightning 1") && playerStats.chain1 == false && playerStats.upgradePoints > 0 ){
+				playerStats.chain1 = true;
+				playerStats.upgradePoints -= 1;
+			} 
+			if (GUILayout.Button("Chain Lightning 2") && playerStats.chain2 == false && playerStats.chain1 == true && playerStats.upgradePoints > 0){
+				playerStats.chain2 = true;
+				playerStats.upgradePoints -= 1;
+			}
+			if (GUILayout.Button("Chain Lightning 3") && playerStats.chain3 == false && playerStats.chain2 == true && playerStats.upgradePoints > 0){
+				playerStats.chain3 = true;
+				playerStats.upgradePoints -= 1;
+			} 
 			GUILayout.EndHorizontal();
 			
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Total damage increased by 25%", upgradesLabel);
-			GUILayout.Button("Damage 1");
-			GUILayout.Button("Damage 2");
-			GUILayout.Button("Damage 3");
+			if (GUILayout.Button("Damage 1") && playerStats.damage1 == false && playerStats.upgradePoints > 1){
+				playerStats.damage1 = true;
+				playerStats.upgradePoints -= 1;
+			}
+			if (GUILayout.Button("Damage 2") && playerStats.damage2 == false && playerStats.damage1 == true && playerStats.upgradePoints > 1){
+				playerStats.damage2 = true;
+				playerStats.upgradePoints -= 1;
+			}
+			if (GUILayout.Button("Damage 3") && playerStats.damage3 == false && playerStats.damage2 == true && playerStats.upgradePoints > 1){
+				playerStats.damage3 = true;
+				playerStats.upgradePoints -= 1;
+			}
 			GUILayout.EndHorizontal();
 			
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Range increased by 50%", upgradesLabel); //distance and angle
-			GUILayout.Button("Wizard Range 1");
-			GUILayout.Button("Wizard Range 2");
-			GUILayout.Button("Wizard Range 3");
+			if (GUILayout.Button("Wizard Range 1") && playerStats.range1 == false && playerStats.upgradePoints > 1){
+				playerStats.range1 = true;
+				playerStats.upgradePoints -= 1;
+			}
+			if (GUILayout.Button("Wizard Range 2") && playerStats.range2 == false && playerStats.range1 == true && playerStats.upgradePoints > 1){
+				playerStats.range2 = true;
+				playerStats.upgradePoints -= 1;
+			}
+			if (GUILayout.Button("Wizard Range 3") && playerStats.range3 == false && playerStats.range2 == true && playerStats.upgradePoints > 1){
+				playerStats.range3 = true;
+				playerStats.upgradePoints -= 1;
+			}
 			GUILayout.EndHorizontal();
 			
 			GUILayout.BeginHorizontal();
@@ -80,7 +107,10 @@ function OnGUI () {
 			GUILayout.EndHorizontal();
 			
 			GUILayout.BeginHorizontal();
-				GUILayout.Button("Coil shoots");
+				if (GUILayout.Button("Coil shoots") && playerStats.coilShooting == false && playerStats.upgradePoints > 1){
+					playerStats.coilShooting = true;
+					playerStats.upgradePoints -= 1;
+				}
 				GUILayout.BeginVertical();
 					GUILayout.BeginHorizontal();
 					GUILayout.Label("Range increased by 50%", upgradesLabel); //distance and angle
