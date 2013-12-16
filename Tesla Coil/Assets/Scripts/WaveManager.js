@@ -16,7 +16,8 @@ var waveTwoTime : float = 120;
 
 var totalTime : float;
 
-var doors : GameObject[];
+var door : GameObject;
+var backdoor : GameObject;
 
 function Update () {
 	if (Time.timeSinceLevelLoad < waveOneDelayTime && waitForOne){
@@ -26,7 +27,7 @@ function Update () {
 		countdown = Mathf.RoundToInt(accurateTime);
 		
 	} else if (Time.timeSinceLevelLoad > waveOneDelayTime && (waitForOne || waveOne)){
-		DoorsOpen();
+		DoorOpen();
 		Debug.Log("Begin Wave 1");
 		waitForOne = false;
 		waveOne = true;
@@ -36,8 +37,6 @@ function Update () {
 		countdown = Mathf.RoundToInt(accurateTime);
 	}
 }
-function DoorsOpen () {
-	for (var door : GameObject in doors){
-		door.animation.Play();
-	}
+function DoorOpen () {
+	door.animation.Play();
 }

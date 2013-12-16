@@ -1,8 +1,6 @@
 ﻿#pragma strict
 
 var player : GameObject;
-var angleRange : float;
-var distanceRange : float;
 
 private var enemies : GameObject[];
 private var currentEnemy : GameObject;
@@ -37,7 +35,7 @@ function CheckEnemies () {
 			var direction = enemy.transform.position - player.transform.position;
 			var angleBetween = Vector3.Angle(player.transform.forward, direction);
 			var distance = Vector3.Distance(player.transform.position, enemy.transform.position);
-			if (angleBetween < angleRange && distance < distanceRange){
+			if (angleBetween < playerStats.angleRange && distance < playerStats.distanceRange){
 				return enemy;
 			}
 		}
